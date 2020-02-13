@@ -65,6 +65,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
 
         public  void bind (CoinData coinData){
+
+            String symbol = coinData.getSymbol();
+            symbol = (symbol.length() > 3) ? symbol.substring(0,3) : symbol;
+
+
             char firstChar = coinData.getPercentChange1h().charAt(0);
             coinName.setText(coinData.getName());
             coinPrice.setText(coinData.getPriceUsd());
@@ -72,7 +77,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             ColorGenerator generator = ColorGenerator.MATERIAL;
 
             TextDrawable drawable = TextDrawable.builder()
-                    .buildRound(coinData.getSymbol(), generator.getRandomColor());
+                    .buildRound(symbol, generator.getRandomColor());
 
             coinImage.setImageDrawable(drawable);
 
